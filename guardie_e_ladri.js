@@ -3,7 +3,11 @@ let sinistra = document.getElementById("ovest");
 let sopra = document.getElementById("nord");
 let sotto = document.getElementById("sud");
 let posizioneGuardia = document.getElementById("guardia");
+let posizioneGuardiaSinistra = document.getElementById("guardia").style.left;
+let posizioneGuardiaSopra = document.getElementById("guardia").style.top;
 let posizioneLadro = document.getElementById("ladro");
+let posizioneLadroSinistra = document.getElementById("ladro").style.left;
+let posizioneLadroSopra = document.getElementById("ladro").style.top;
 let contaMosse = 20;
 
 document.addEventListener("Click", mossa);
