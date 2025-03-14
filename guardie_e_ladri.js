@@ -4,28 +4,34 @@ let sopra = document.getElementById("nord").addEventListener("click", () => moss
 let sotto = document.getElementById("sud").addEventListener("click", () => mossa("sud"));
 let contaMosse = 20;
 let guardia = document.getElementById("guardia");
+let ladro = document.getElementById("ladro");
+let passo = 50;
 
 function mossa(direzione) {
-    let passo = 50;
 
-    if (direzione === "nord"){
+
+    if (direzione === "nord"){ //0
         if (parseInt(guardia.style.top) >= 50) {
             guardia.style.top = (parseInt(guardia.style.top) - passo) + "px";
+            mossaLadro();
         }
 
-    } else if (direzione === "sud") {
+    } else if (direzione === "sud") { //1
         if (parseInt(guardia.style.top) < 450 ) {
             guardia.style.top = (parseInt(guardia.style.top) + passo) + "px";
+            mossaLadro();
         }
         
-    } else if (direzione === "est") {
+    } else if (direzione === "est") { //2
         if (parseInt(guardia.style.left) < 450) {
             guardia.style.left = (parseInt(guardia.style.left) + passo) + "px";
+            mossaLadro();
         }
 
-    } else if (direzione === "ovest") {
+    } else if (direzione === "ovest") { //3
         if (parseInt(guardia.style.left) > 0) {
             guardia.style.left = (parseInt(guardia.style.left) - passo) + "px";
+            mossaLadro();
         }
     }
 
@@ -33,10 +39,31 @@ function mossa(direzione) {
     stampaMosse();
 }
 
-function checkWinLose(){
-        let guardia = document.getElementById("guardia");
-        let ladro = document.getElementById("ladro");
+function mossaLadro (){
+    mossaCasuale = Math.floor(Math.random()*3);
 
+    if(mossaCasuale == 0){ //destra
+        if (parseInt(ladro.style.left) < 450) {
+            ladro.style.left = (parseInt(ladro.style.left) + passo) + "px";
+        }
+    }else if( mossaCasuale == 1){ //sinistra
+        if(parseInt(ladro.style.left) > 0){
+            ladro.style.left = (parseInt(ladro.style.left) - passo) +"px";
+        }
+    }else if( mossaCasuale == 2){//sopra
+        if(parseInt(ladro.style.top)>= 50){
+            ladro.style.top = (parseInt(ladro.style.top) - passo) + "px";
+        }
+    }else if(mossaCasuale == 3){
+        if(parseInt(ladro.style.top)< 450){
+            ladro.style.top = (parseInt(ladro.style.top) + passo )+ "px";
+        }
+    }
+
+}
+
+
+function checkWinLose(){
 
         if(guardia.style.left == ladro.style.left && guardia.style.top == ladro.style.top ){
             document.getElementById("esito").innerHTML = "<p>Hai catturato il ladro, hai vinto!</p>"
