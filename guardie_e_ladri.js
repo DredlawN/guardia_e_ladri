@@ -1,7 +1,7 @@
-let destra = document.getElementbyID("est");
-let sinistra = document.getElementById("ovest");
-let sopra = document.getElementById("nord");
-let sotto = document.getElementById("sud");
+let destra = document.getElementById("est").addEventListener("click", () => mossa("est"));
+let sinistra = document.getElementById("ovest").addEventListener("click", () => mossa("ovest"));
+let sopra = document.getElementById("nord").addEventListener("click", () => mossa("nord"));
+let sotto = document.getElementById("sud").addEventListener("click", () => mossa("sud"));
 let posizioneGuardia = document.getElementById("guardia");
 let posizioneGuardiaSinistra = document.getElementById("guardia").style.left;
 let posizioneGuardiaSopra = document.getElementById("guardia").style.top;
@@ -12,16 +12,30 @@ let contaMosse = 20;
 
 document.addEventListener("Click", mossa);
 
-function mossa(){
-    if (sopra){
-        // sposta guardia sopra
-    }else if(sotto){
-        //sposta guardia sotto
-    }else if(destra){
-        //sposta guardia destra
-    }else if (sinistra){
-        //sposta guardia sinistra
+function mossa(direzione) {
+    let passo = 50;
+    let guardia = document.getElementById("guardia");
+
+    if (direzione === "nord")
+    {
+        if (guardia.style.top >= 0) {
+            guardia.style.top = (parseInt(guardia.style.top) - passo) + "px";
+        }
+    } else if (direzione === "sud") {
+        if (guardia.style.top < 500) {
+            guardia.style.top = (parseInt(guardia.style.top) + passo) + "px";
+        }
+        
+    } else if (direzione === "est") {
+        if (guardia.style.left <= 450) {
+            guardia.style.left = (parseInt(guardia.style.left) + passo) + "px";
+        }
+    } else if (direzione === "ovest") {
+        if (guardia.style.left >= 0) {
+            guardia.style.left = (parseInt(guardia.style.left) - passo) + "px";
+        }
     }
+
     contaMosse--;
     stampaMosse();
 }
