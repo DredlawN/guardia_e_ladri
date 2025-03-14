@@ -32,11 +32,13 @@ function stampaMosse(){
 }
 
 function checkWinLose(){
-    function checkWinLose(){
         if(posizioneGuardia == posizioneLadro){
             document.getElementById("esito").innerHTML = "<p>Hai catturato il ladro, hai vinto!</p>"
         } else if(contaMosse == 0){
             document.getElementById("esito").innerHTML = "<p>Ritenta sarai piu fortunato la prossima volta, marameo</p>";
         }
-    }
+        document.getElementById("nord").disabled = "true";
+        document.getElementById("sud").disabled = "true";
+        document.getElementById("est").disabled = "true";
+        document.getElementById("ovest").disabled = "true";
 }
