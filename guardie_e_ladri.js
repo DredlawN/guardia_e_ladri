@@ -41,21 +41,34 @@ function mossa(direzione) {
 
 function mossaLadro (){
     mossaCasuale = Math.floor(Math.random()*3);
+    
 
     if(mossaCasuale == 0){ //destra
-        if (parseInt(ladro.style.left) < 450) {
+        if(parseInt(ladro.style.left) == 500){
+            mossaLadro();
+        }
+        else if (parseInt(ladro.style.left) < 450) {
             ladro.style.left = (parseInt(ladro.style.left) + passo) + "px";
         }
     }else if( mossaCasuale == 1){ //sinistra
-        if(parseInt(ladro.style.left) > 0){
+        if(parseInt(ladro.style.left) == 0){
+            mossaLadro();
+        }
+        else if(parseInt(ladro.style.left) > 0){
             ladro.style.left = (parseInt(ladro.style.left) - passo) +"px";
         }
     }else if( mossaCasuale == 2){//sopra
-        if(parseInt(ladro.style.top)>= 50){
+        if(parseInt(ladro.style.top) == 0){
+            mossaLadro();
+        }
+        else if(parseInt(ladro.style.top)>= 50){
             ladro.style.top = (parseInt(ladro.style.top) - passo) + "px";
         }
     }else if(mossaCasuale == 3){
-        if(parseInt(ladro.style.top)< 450){
+        if(parseInt(ladro.style.top) == 500){
+            mossaLadro();
+        }
+        else if(parseInt(ladro.style.top)<= 450){
             ladro.style.top = (parseInt(ladro.style.top) + passo )+ "px";
         }
     }
