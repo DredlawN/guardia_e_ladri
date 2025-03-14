@@ -2,36 +2,29 @@ let destra = document.getElementById("est").addEventListener("click", () => moss
 let sinistra = document.getElementById("ovest").addEventListener("click", () => mossa("ovest"));
 let sopra = document.getElementById("nord").addEventListener("click", () => mossa("nord"));
 let sotto = document.getElementById("sud").addEventListener("click", () => mossa("sud"));
-let posizioneGuardia = document.getElementById("guardia");
-let posizioneGuardiaSinistra = document.getElementById("guardia").style.left;
-let posizioneGuardiaSopra = document.getElementById("guardia").style.top;
-let posizioneLadro = document.getElementById("ladro");
-let posizioneLadroSinistra = document.getElementById("ladro").style.left;
-let posizioneLadroSopra = document.getElementById("ladro").style.top;
 let contaMosse = 20;
-
-document.addEventListener("Click", mossa);
+let guardia = document.getElementById("guardia");
 
 function mossa(direzione) {
     let passo = 50;
-    let guardia = document.getElementById("guardia");
 
-    if (direzione === "nord")
-    {
-        if (guardia.style.top >= 0) {
+    if (direzione === "nord"){
+        if (parseInt(guardia.style.top) >= 50) {
             guardia.style.top = (parseInt(guardia.style.top) - passo) + "px";
         }
+
     } else if (direzione === "sud") {
-        if (guardia.style.top < 500) {
+        if (parseInt(guardia.style.top) < 450 ) {
             guardia.style.top = (parseInt(guardia.style.top) + passo) + "px";
         }
         
     } else if (direzione === "est") {
-        if (guardia.style.left <= 450) {
+        if (parseInt(guardia.style.left) < 450) {
             guardia.style.left = (parseInt(guardia.style.left) + passo) + "px";
         }
+
     } else if (direzione === "ovest") {
-        if (guardia.style.left >= 0) {
+        if (parseInt(guardia.style.left) > 0) {
             guardia.style.left = (parseInt(guardia.style.left) - passo) + "px";
         }
     }
@@ -40,19 +33,28 @@ function mossa(direzione) {
     stampaMosse();
 }
 
+function checkWinLose(){
+        let guardia = document.getElementById("guardia");
+        let ladro = document.getElementById("ladro");
+
+
+        if(guardia.style.left == ladro.style.left && guardia.style.top == ladro.style.top ){
+            document.getElementById("esito").innerHTML = "<p>Hai catturato il ladro, hai vinto!</p>"
+            document.getElementById("nord").disabled = "true";
+            document.getElementById("sud").disabled = "true";
+            document.getElementById("est").disabled = "true";
+            document.getElementById("ovest").disabled = "true";
+        } else if(contaMosse == 0){
+            document.getElementById("esito").innerHTML = "<p>Ritenta sarai piu fortunato la prossima volta, marameo</p>";
+            document.getElementById("nord").disabled = "true";
+            document.getElementById("sud").disabled = "true";
+            document.getElementById("est").disabled = "true";
+            document.getElementById("ovest").disabled = "true";
+        }
+}
+
 function stampaMosse(){
     document.getElementById("esito").innerHTML = "<p>Mosse Rimaste:" + contaMosse + "</p>";
     checkWinLose();
 }
 
-function checkWinLose(){
-        if(posizioneGuardia == posizioneLadro){
-            document.getElementById("esito").innerHTML = "<p>Hai catturato il ladro, hai vinto!</p>"
-        } else if(contaMosse == 0){
-            document.getElementById("esito").innerHTML = "<p>Ritenta sarai piu fortunato la prossima volta, marameo</p>";
-        }
-        destra.disabled = "true";
-        sinistra.disabled = "true";
-        sopra.disabled = "true";
-        sotto.disabled = "true";
-}
