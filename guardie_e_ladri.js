@@ -27,14 +27,16 @@ function mossa(){
 }
 
 function stampaMosse(){
-    document.getElementById("esito").innerHTML = "<p>Mosse Rimaste:'+contamosse'</p>";
+    document.getElementById("esito").innerHTML = "<p>Mosse Rimaste:" + contaMosse + "</p>";
     checkWinLose();
 }
 
 function checkWinLose(){
-    if(posizioneGuardia){
-
-    }else if(contaMosse == 0){
-        document.getElementById("esito").innerHTML = "<p>Ritenta sarai piu fortunato la prossima volta, marameo</p>";
+    function checkWinLose(){
+        if(posizioneGuardia == posizioneLadro){
+            document.getElementById("esito").innerHTML = "<p>Hai catturato il ladro, hai vinto!</p>"
+        } else if(contaMosse == 0){
+            document.getElementById("esito").innerHTML = "<p>Ritenta sarai piu fortunato la prossima volta, marameo</p>";
+        }
     }
 }
